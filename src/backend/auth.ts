@@ -1,6 +1,7 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { getDb } from "../db";
+import { accounts, sessions, users, verifications } from "../db/schema";
 import type { Env } from "./env";
 
 export function createAuth(env: Env) {
@@ -9,10 +10,10 @@ export function createAuth(env: Env) {
     database: drizzleAdapter(db, {
       provider: "sqlite",
       schema: {
-        user: "users",
-        session: "sessions",
-        account: "accounts",
-        verification: "verifications",
+        user: users,
+        session: sessions,
+        account: accounts,
+        verification: verifications,
       },
     }),
     baseURL: env.BETTER_AUTH_URL,

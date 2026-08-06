@@ -5,6 +5,8 @@ dist/
 .env.local
 *.log
 playwright-report/
+playwright-report-live/
 test-results/
 .DS_Store
 drizzle/meta/
+.dev.vars

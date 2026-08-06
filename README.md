@@ -81,6 +81,24 @@ Configure the D1 database binding and `BETTER_AUTH_URL` in `wrangler.jsonc`,
 and set the `BETTER_AUTH_SECRET` secret (e.g. via `wrangler secret put
 BETTER_AUTH_SECRET`) before deploying.
 
+### Seeding Initial Users
+
+After applying migrations, you can seed the database with one active user per
+role (`admin` and `partner`) so you can sign in right away:
+
+```bash
+npm run db:seed:generate   # (re)generates drizzle/seed/seed.sql with fresh hashed passwords
+npm run db:seed            # applies drizzle/seed/seed.sql to the local D1 database
+npm run db:seed:remote     # applies drizzle/seed/seed.sql to the remote/production D1 database
+```
+
+Seeded accounts (all use the password `garland123`):
+
+| Email | Role |
+| --- | --- |
+| `admin@example.com` | admin |
+| `partner@example.com` | partner |
+
 ## Scripts
 
 | Command | Description |
@@ -94,6 +112,9 @@ BETTER_AUTH_SECRET`) before deploying.
 | `npm run test:unit` | Run unit tests with Vitest |
 | `npm run test:e2e` | Run Playwright end-to-end tests |
 | `npm run db:generate` | Generate Drizzle migrations from the schema |
+| `npm run db:seed:generate` | Regenerate `drizzle/seed/seed.sql` with fresh hashed passwords |
+| `npm run db:seed` | Seed the local D1 database with initial users |
+| `npm run db:seed:remote` | Seed the remote/production D1 database with initial users |
 
 ## Deployment
 

@@ -50,7 +50,20 @@ previous step:
 npx wrangler d1 migrations apply referral-portal-db --remote
 ```
 
-### Step E: Build and deploy the application
+### Step E: Set `BETTER_AUTH_URL` to your deployed Worker URL
+
+Update the `vars.BETTER_AUTH_URL` value in `wrangler.jsonc` to match the
+exact origin your Worker will be served from, e.g.
+`https://real-estate-referral-portal.<your-subdomain>.workers.dev` (or your
+custom domain). Better Auth performs strict origin validation, so if this
+value still points at `http://localhost:8787` when deployed, sign-in and
+sign-up requests will fail with an `Invalid origin` error.
+
+If you also need to trust other origins (for example during a domain
+migration), set the optional `BETTER_AUTH_TRUSTED_ORIGINS` variable to a
+comma-separated list of additional origins.
+
+### Step F: Build and deploy the application
 
 ```bash
 npm run deploy

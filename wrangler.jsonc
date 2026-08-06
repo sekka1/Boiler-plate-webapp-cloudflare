@@ -13,7 +13,7 @@
     {
       "binding": "DB",
       "database_name": "referral-portal-db",
-      "database_id": "REPLACE_WITH_YOUR_D1_DATABASE_ID",
+      "database_id": "6d0a1b7a-e5a6-4afe-bab8-3fcaf4ca0bff",
       "migrations_dir": "drizzle"
     }
   ],

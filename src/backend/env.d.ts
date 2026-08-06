@@ -11,3 +11,12 @@ export interface Env {
    */
   BETTER_AUTH_TRUSTED_ORIGINS?: string;
 }
+
+declare module "cloudflare:test" {
+  // Makes the `env` helper exported by `cloudflare:test` aware of the D1
+  // migrations binding injected for tests (see vitest.config.ts) alongside
+  // the regular worker bindings.
+  interface ProvidedEnv extends Env {
+    TEST_MIGRATIONS: import("@cloudflare/vitest-pool-workers/config").D1Migration[];
+  }
+}

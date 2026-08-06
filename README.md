@@ -94,3 +94,8 @@ BETTER_AUTH_SECRET`) before deploying.
 | `npm run test:unit` | Run unit tests with Vitest |
 | `npm run test:e2e` | Run Playwright end-to-end tests |
 | `npm run db:generate` | Generate Drizzle migrations from the schema |
+
+## Deployment
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for instructions on the initial Cloudflare
+deployment and how Continuous Deployment to Cloudflare works on merge to `main`.

@@ -4,6 +4,10 @@ export const users = sqliteTable("users", {
   id: text("id").primaryKey(),
   email: text("email").notNull().unique(),
   name: text("name").notNull(),
+  emailVerified: integer("email_verified", { mode: "boolean" })
+    .notNull()
+    .default(false),
+  image: text("image"),
   role: text("role", { enum: ["admin", "partner"] })
     .notNull()
     .default("partner"),

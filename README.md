@@ -81,6 +81,15 @@ Configure the D1 database binding and `BETTER_AUTH_URL` in `wrangler.jsonc`,
 and set the `BETTER_AUTH_SECRET` secret (e.g. via `wrangler secret put
 BETTER_AUTH_SECRET`) before deploying.
 
+`BETTER_AUTH_URL` **must** match the exact origin your app is served from in
+production (e.g. `https://your-worker-name.your-subdomain.workers.dev` or a
+custom domain), otherwise sign-in/sign-up requests will fail with an
+`Invalid origin` error. If you need to trust additional origins (for example
+while migrating domains), set the optional `BETTER_AUTH_TRUSTED_ORIGINS`
+variable to a comma-separated list of extra origins. Local development
+origins (`http://localhost:5173` and `http://localhost:8787`) are always
+trusted automatically.
+
 ### Seeding Initial Users
 
 After applying migrations, you can seed the database with one active user per

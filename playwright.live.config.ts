@@ -15,7 +15,11 @@ export default defineConfig({
   retries: 2,
   reporter: [["html", { open: "never", outputFolder: "playwright-report-live" }]],
   use: {
-    baseURL: process.env.LIVE_URL ?? "https://real-estate-referral-portal.garlandk.workers.dev",
+    // Use `||` (not `??`) so an unset GitHub Actions variable - which is
+    // passed through as an empty string rather than being omitted - still
+    // falls back to the default URL instead of producing an invalid,
+    // empty baseURL.
+    baseURL: process.env.LIVE_URL || "https://real-estate-referral-portal.garlandk.workers.dev",
     trace: "on-first-retry",
   },
 });

@@ -129,3 +129,57 @@ Seeded accounts (all use the password `garland123`):
 
 See [DEPLOYMENT.md](./DEPLOYMENT.md) for instructions on the initial Cloudflare
 deployment and how Continuous Deployment to Cloudflare works on merge to `main`.
+
+## Non-Technical Owner Workflow (No Code / No Terminal)
+
+For non-technical business users, daily use and change requests should happen
+through two interfaces only: the live web app and GitHub Issues.
+
+### 1) Day-to-day operations (zero code / zero GitHub)
+
+- **Partners**: Bookmark
+  `https://real-estate-referral-portal.garlandk.workers.dev`, log in, and use
+  forms/tables to submit and view referrals.
+- **Owner/Admin**: Log in to the same URL, open `/admin`, and approve users or
+  update referral statuses directly in the UI.
+
+### 2) Requesting changes (plain-English issue to deployment loop)
+
+```
+Non-Technical Owner                AI Cloud Agent                 GitHub Actions
+┌──────────────────┐             ┌──────────────────┐           ┌──────────────────┐
+│  Opens GitHub    │             │  Reads issue &   │           │  Runs CI tests,  │
+│  Issue in plain  │ ──────────> │  creates PR with │ ────────> │  merges code, &  │
+│  English         │             │  code changes    │           │  deploys live    │
+└──────────────────┘             └──────────────────┘           └──────────────────┘
+```
+
+Step-by-step:
+
+1. **Submit a request (GitHub Issue)**  
+   Example:  
+   > "Add a 'Phone Number' column to the Admin referral table so I can call clients directly from the table."
+2. **AI agent implements it**  
+   A cloud agent (for example GitHub Copilot Workspace, Devin, or an
+   issue-triggered bot) reads the issue + `AGENT.md`, writes code, and opens a
+   PR.
+3. **GitHub Actions verifies it**  
+   CI runs linting, unit tests, and Playwright E2E tests on the PR.
+4. **One-click publish**  
+   Click **Merge pull request** when checks are green; CI/CD applies database
+   changes and deploys the live Cloudflare site.
+
+### 3) Recommended non-technical tools
+
+- **GitHub Copilot Workspace (web)**: describe changes in plain English, preview
+  updates, then click **Create PR**.
+- **Cursor (desktop)**: press `Cmd+I` / `Ctrl+I`, describe the change in plain
+  text, and let the agent handle git operations.
+
+### 4) Owner safety checklist
+
+- Never edit repository files manually on GitHub; always open an Issue (or ask
+  an AI agent to do it).
+- Never merge a PR with red checks. If CI fails, comment:
+  `@copilot fix the CI build errors in the PR comment thread`.
+- Only click **Merge** when checks are green.

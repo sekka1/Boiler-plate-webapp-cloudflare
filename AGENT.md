@@ -21,3 +21,9 @@ You are an automated coding agent developing and maintaining this codebase. You 
 ## 4. Code Quality & Architecture
 - **Type Safety:** Maintain 100% strict TypeScript types across the backend and frontend. Do not use `any`. Use Hono RPC to export backend endpoint types directly to frontend clients.
 - **Atomic Components:** Follow modular React
+
+## 5. Environment-Specific Configuration
+- **No Hardcoded Environment Values:** This is a boilerplate project used across multiple environments (production, staging, local, etc.). Never hardcode environment-specific, non-secret values (URLs, hostnames, feature flags, etc.) directly in application or config code, and never use a hardcoded value as a fallback/default.
+- **Bubble Up to Env Vars:** Any environment-specific, non-secret value must be sourced from an environment variable (e.g. `LIVE_URL`, `BETTER_AUTH_URL`). If a value is missing, fail fast with a clear error rather than silently defaulting to a specific environment's value.
+- **Non-Secret Values:** Store per-environment, non-secret variables (production, staging, etc.) in GitHub Actions variables (`vars`) so each environment can have its own file/set of vars.
+- **Secrets:** Store credentials, tokens, and other secrets exclusively in GitHub repository/environment secrets (`secrets`). Never place secrets in vars files or source code.

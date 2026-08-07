@@ -10,6 +10,7 @@ You are an automated coding agent developing and maintaining this codebase. You 
 
 ## 2. Test Execution Mandate
 - **Run Tests Before Commit:** Before proposing changes, finalizing tasks, or committing code, you MUST execute `npm run lint`, `npm run typecheck`, and `npm run test:unit`.
+- **Run E2E Tests Locally Before Commit:** Before committing any change that touches authentication, routing, or UI flows covered by `/e2e`, you MUST run `npm run test:e2e`. This command uses Playwright's `webServer` config to spin up the app locally (`npm run preview` on `http://localhost:8787`) and run the suite against it — do not run e2e tests against the live/deployed site (`npm run test:e2e:live`) as part of local development; that suite is reserved for the post-deploy CD workflow.
 - **Zero Regression Policy:** Never mark a task as complete if any existing test fails. If a feature modification breaks existing unit or E2E tests, update or add tests to reflect the intended behavior.
 - **Add Tests for New Features:** Every new API route or business logic addition must be accompanied by unit tests in `/src/tests` and E2E coverage in `/e2e`.
 

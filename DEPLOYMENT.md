@@ -97,3 +97,33 @@ authenticate with Cloudflare:
 
 Once these secrets are configured, merging to `main` will automatically run
 database migrations and deploy the latest code to Cloudflare.
+
+### Post-deploy E2E smoke test
+
+After the Worker is deployed, the workflow runs a small Playwright smoke test
+suite ([`e2e-live/smoke.spec.ts`](./e2e-live/smoke.spec.ts)) against the
+**live** deployment to confirm the main page is reachable and that a real
+user can sign in. It uses the `partner@example.com` user seeded by
+[`scripts/seed-users.mjs`](./scripts/seed-users.mjs) (see
+[`drizzle/seed/seed.sql`](./drizzle/seed/seed.sql)) by default, so make sure
+that user has been seeded into the remote database (see the "Seed Remote D1
+Database" workflow) before relying on this check.
+
+The `E2E_TEST_PASSWORD` secret must be configured for the sign-in smoke test
+to run — it is never hardcoded in source, and the test is skipped if it is
+missing.
+
+| Name                  | Type   | Required | Description                                              |
+| ---------------------- | ------ | -------- | --------------------------------------------------------- |
+| `LIVE_URL`              | variable | No | Base URL of the deployed site (defaults to `https://real-estate-referral-portal.garlandk.workers.dev`). |
+| `E2E_TEST_EMAIL`        | secret | No | Email of the test user used to sign in (defaults to `partner@example.com`). |
+| `E2E_TEST_PASSWORD`     | secret | Yes | Password of the test user used to sign in.                |
+
+To run the same suite locally against a live URL:
+
+```bash
+LIVE_URL=https://real-estate-referral-portal.garlandk.workers.dev \
+E2E_TEST_EMAIL=partner@example.com \
+E2E_TEST_PASSWORD=<your-test-password> \
+npm run test:e2e:live
+```

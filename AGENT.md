@@ -27,3 +27,12 @@ You are an automated coding agent developing and maintaining this codebase. You 
 - **Bubble Up to Env Vars:** Any environment-specific, non-secret value must be sourced from an environment variable (e.g. `LIVE_URL`, `BETTER_AUTH_URL`). If a value is missing, fail fast with a clear error rather than silently defaulting to a specific environment's value.
 - **Non-Secret Values:** Store per-environment, non-secret variables (production, staging, etc.) in GitHub Actions variables (`vars`) so each environment can have its own file/set of vars.
 - **Secrets:** Store credentials, tokens, and other secrets exclusively in GitHub repository/environment secrets (`secrets`). Never place secrets in vars files or source code.
+
+## Specialized Agent Directory
+
+- **`@security-expert`** (`.github/agents/security-expert.agent.md`): Audits code for OWASP Top 10 vulnerabilities, scans for hardcoded secrets, and proposes secure patches.
+- **`@database-expert`** (`.github/agents/database-expert.agent.md`): Reviews ORM models, SQL queries, and migration safety to enforce strict zero-data-loss and non-blocking DDL rules.
+- **`@devops-expert`** (`.github/agents/devops-expert.agent.md`): Manages Cloudflare Workers infrastructure, Wrangler bindings, GitHub Actions CI/CD pipelines, and secrets.
+
+### Routing Guidelines
+* When editing `wrangler.jsonc`, `.github/workflows/`, or environment secrets, invoke `@devops-expert`.

@@ -130,6 +130,14 @@ Seeded accounts (all use the password `garland123`):
 See [DEPLOYMENT.md](./DEPLOYMENT.md) for instructions on the initial Cloudflare
 deployment and how Continuous Deployment to Cloudflare works on merge to `main`.
 
+## Copying This Repo for a New Project
+
+This repository is a boilerplate, meant to be copied as the starting point
+for new projects. See [COPY_THIS_REPO.md](./COPY_THIS_REPO.md) for a full,
+step-by-step guide covering what to copy, how to set up your own Cloudflare
+account/resources, and exactly which Cloudflare/GitHub secrets you must
+create for CI/CD to work.
+
 ## Non-Technical Owner Workflow (No Code / No Terminal)
 
 For non-technical business users, daily use and change requests should happen

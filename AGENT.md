@@ -28,6 +28,10 @@ You are an automated coding agent developing and maintaining this codebase. You 
 - **Non-Secret Values:** Store per-environment, non-secret variables (production, staging, etc.) in GitHub Actions variables (`vars`) so each environment can have its own file/set of vars.
 - **Secrets:** Store credentials, tokens, and other secrets exclusively in GitHub repository/environment secrets (`secrets`). Never place secrets in vars files or source code.
 
+## 6. Copying This Repo / Boilerplate Features
+- **Copying the Repo:** If asked to copy this repo to bootstrap a new project, follow [`COPY_THIS_REPO.md`](./COPY_THIS_REPO.md) exactly. It lists everything that must be copied (including `.github/**` and this file), the Cloudflare resources to create, and every required GitHub/Cloudflare secret and variable.
+- **Contributing Back to the Boilerplate:** If a change is a general-purpose improvement to this boilerplate itself (rather than project-specific business logic), it should be tracked using the "🧰 Add a Boilerplate Feature" issue template (`.github/ISSUE_TEMPLATE/boilerplate_feature.yml`) so it can be ported to other projects spawned from this repo.
+
 ## Specialized Agent Directory
 
 - **`@security-expert`** (`.github/agents/security-expert.agent.md`): Audits code for OWASP Top 10 vulnerabilities, scans for hardcoded secrets, and proposes secure patches.

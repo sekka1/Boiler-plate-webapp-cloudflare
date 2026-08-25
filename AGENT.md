@@ -37,6 +37,8 @@ You are an automated coding agent developing and maintaining this codebase. You 
 - **`@security-expert`** (`.github/agents/security-expert.agent.md`): Audits code for OWASP Top 10 vulnerabilities, scans for hardcoded secrets, and proposes secure patches.
 - **`@database-expert`** (`.github/agents/database-expert.agent.md`): Reviews ORM models, SQL queries, and migration safety to enforce strict zero-data-loss and non-blocking DDL rules.
 - **`@devops-expert`** (`.github/agents/devops-expert.agent.md`): Manages Cloudflare Workers infrastructure, Wrangler bindings, GitHub Actions CI/CD pipelines, and secrets.
+- **`@general-expert`** (`.github/agents/general-expert.agent.md`): General-purpose software engineering review — correctness, TypeScript/React conventions, API design, test coverage, and readability.
 
 ### Routing Guidelines
 * When editing `wrangler.jsonc`, `.github/workflows/`, or environment secrets, invoke `@devops-expert`.
+* For everyday application code, component, or API changes not primarily about security, infrastructure, or data migrations, invoke `@general-expert`.

@@ -138,6 +138,16 @@ focus states, keyboard/screen-reader support) non-negotiable. See
 [AGENT.md](./AGENT.md#specialized-agent-directory) for the full list of
 specialized agents and when each one is invoked.
 
+The agent is backed by a real
+[GitHub Copilot agent skill](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills),
+`.github/skills/frontend-design/SKILL.md`, ported from the
+[Claude Code Frontend Design Toolkit](https://github.com/wilwaldon/Claude-Code-Frontend-Design-Toolkit)
+ecosystem (specifically Anthropic's official `frontend-design` skill). We're
+explicit about what was ported and how to refresh it as the upstream
+toolkit/skills evolve — see
+[`.github/skills/SOURCES.md`](./.github/skills/SOURCES.md) for the exact
+upstream source, commit reference, and update steps.
+
 ## Deployment
 
 See [DEPLOYMENT.md](./DEPLOYMENT.md) for instructions on the initial Cloudflare

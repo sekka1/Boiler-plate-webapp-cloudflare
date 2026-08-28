@@ -37,7 +37,7 @@ You are an automated coding agent developing and maintaining this codebase. You 
 - **`@security-expert`** (`.github/agents/security-expert.agent.md`): Audits code for OWASP Top 10 vulnerabilities, scans for hardcoded secrets, and proposes secure patches.
 - **`@database-expert`** (`.github/agents/database-expert.agent.md`): Reviews ORM models, SQL queries, and migration safety to enforce strict zero-data-loss and non-blocking DDL rules.
 - **`@devops-expert`** (`.github/agents/devops-expert.agent.md`): Manages Cloudflare Workers infrastructure, Wrangler bindings, GitHub Actions CI/CD pipelines, and secrets.
-- **`@frontend-design-expert`** (`.github/agents/frontend-design-expert.agent.md`): Picks a deliberate UI aesthetic direction, enforces cohesive design tokens/typography, and eliminates generic "AI slop" component patterns.
+- **`@frontend-design-expert`** (`.github/agents/frontend-design-expert.agent.md`): Picks a deliberate UI aesthetic direction, enforces cohesive design tokens/typography, and eliminates generic "AI slop" component patterns. Backed by the `.github/skills/frontend-design/SKILL.md` Copilot agent skill (see `.github/skills/SOURCES.md` for its upstream source and update steps).
 
 ### Routing Guidelines
 * When editing `wrangler.jsonc`, `.github/workflows/`, or environment secrets, invoke `@devops-expert`.

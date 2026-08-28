@@ -125,6 +125,19 @@ Seeded accounts (all use the password `garland123`):
 | `npm run db:seed` | Seed the local D1 database with initial users |
 | `npm run db:seed:remote` | Seed the remote/production D1 database with initial users |
 
+## Frontend Design Guidelines
+
+By default, AI-generated frontends tend to converge on the same generic look
+(Inter font, purple gradients, the same rounded cards everywhere). To avoid
+that, this repo ships a `@frontend-design-expert` custom agent persona
+(`.github/agents/frontend-design-expert.agent.md`) that Copilot follows when
+creating or restyling anything under `src/frontend/`. It requires picking a
+deliberate aesthetic direction, using cohesive design tokens/typography
+instead of one-off hardcoded values, and keeping accessibility (contrast,
+focus states, keyboard/screen-reader support) non-negotiable. See
+[AGENT.md](./AGENT.md#specialized-agent-directory) for the full list of
+specialized agents and when each one is invoked.
+
 ## Deployment
 
 See [DEPLOYMENT.md](./DEPLOYMENT.md) for instructions on the initial Cloudflare

@@ -11,8 +11,8 @@ Copy **everything** in this repository into the new repo, including the
 "hidden"/dotfile directories that are easy to miss:
 
 - `.github/**` — CI/CD workflows (`.github/workflows/`), issue templates
-  (`.github/ISSUE_TEMPLATE/`), and specialized agent definitions
-  (`.github/agents/`)
+  (`.github/ISSUE_TEMPLATE/`), specialized agent definitions
+  (`.github/agents/`), and Copilot agent skills (`.github/skills/`)
 - `AGENT.md` — the agent execution rules/security protocols that keep an AI
   coding agent operating safely on this codebase
 - `COPY_THIS_REPO.md` — this file, so the new repo can be copied again later

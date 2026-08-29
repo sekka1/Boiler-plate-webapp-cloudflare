@@ -125,6 +125,29 @@ Seeded accounts (all use the password `garland123`):
 | `npm run db:seed` | Seed the local D1 database with initial users |
 | `npm run db:seed:remote` | Seed the remote/production D1 database with initial users |
 
+## Frontend Design Guidelines
+
+By default, AI-generated frontends tend to converge on the same generic look
+(Inter font, purple gradients, the same rounded cards everywhere). To avoid
+that, this repo ships a `@frontend-design-expert` custom agent persona
+(`.github/agents/frontend-design-expert.agent.md`) that Copilot follows when
+creating or restyling anything under `src/frontend/`. It requires picking a
+deliberate aesthetic direction, using cohesive design tokens/typography
+instead of one-off hardcoded values, and keeping accessibility (contrast,
+focus states, keyboard/screen-reader support) non-negotiable. See
+[AGENT.md](./AGENT.md#specialized-agent-directory) for the full list of
+specialized agents and when each one is invoked.
+
+The agent is backed by a real
+[GitHub Copilot agent skill](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills),
+`.github/skills/frontend-design/SKILL.md`, ported from the
+[Claude Code Frontend Design Toolkit](https://github.com/wilwaldon/Claude-Code-Frontend-Design-Toolkit)
+ecosystem (specifically Anthropic's official `frontend-design` skill). We're
+explicit about what was ported and how to refresh it as the upstream
+toolkit/skills evolve — see
+[`.github/skills/SOURCES.md`](./.github/skills/SOURCES.md) for the exact
+upstream source, commit reference, and update steps.
+
 ## Deployment
 
 See [DEPLOYMENT.md](./DEPLOYMENT.md) for instructions on the initial Cloudflare

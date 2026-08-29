@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { ReferralTable } from "@/components/referral-table";
 import { UserTable } from "@/components/user-table";
 import { Input } from "@/components/ui/input";
@@ -49,7 +50,15 @@ export function AdminDashboardPage() {
   return (
     <div className="min-h-screen bg-slate-50 p-6">
       <div className="mx-auto max-w-6xl space-y-6">
-        <h1 className="text-2xl font-semibold">Admin Portal</h1>
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl font-semibold">Admin Portal</h1>
+          <Link
+            to="/demos"
+            className="text-sm font-medium text-slate-600 underline-offset-4 hover:text-slate-900 hover:underline"
+          >
+            Explore design demos →
+          </Link>
+        </div>
         <div className="flex gap-2 border-b border-slate-200">
           <button
             className={`px-4 py-2 text-sm font-medium ${tab === "referrals" ? "border-b-2 border-slate-900" : "text-slate-500"}`}

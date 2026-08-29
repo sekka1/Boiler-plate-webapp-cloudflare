@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { StatCard } from "@/components/stat-card";
 import { ReferralForm } from "@/components/referral-form";
 import { ReferralTable } from "@/components/referral-table";
@@ -37,7 +38,15 @@ export function PartnerDashboardPage() {
       <div className="mx-auto max-w-6xl space-y-6">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-semibold">Partner Dashboard</h1>
-          <ReferralForm onCreated={fetchReferrals} />
+          <div className="flex items-center gap-4">
+            <Link
+              to="/demos"
+              className="text-sm font-medium text-slate-600 underline-offset-4 hover:text-slate-900 hover:underline"
+            >
+              Explore design demos →
+            </Link>
+            <ReferralForm onCreated={fetchReferrals} />
+          </div>
         </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <StatCard label="Total Referrals Submitted" value={totalSubmitted} />

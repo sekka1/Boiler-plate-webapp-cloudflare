@@ -6,6 +6,11 @@ import { SignUpPage } from "@/pages/sign-up";
 import { PendingApprovalPage } from "@/pages/pending-approval";
 import { PartnerDashboardPage } from "@/pages/partner-dashboard";
 import { AdminDashboardPage } from "@/pages/admin-dashboard";
+import { DemosIndexPage } from "@/pages/demos";
+import { AnalyticsDemoPage } from "@/pages/demos/analytics";
+import { ListingsDemoPage } from "@/pages/demos/listings";
+import { TeamDemoPage } from "@/pages/demos/team";
+import { PipelineDemoPage } from "@/pages/demos/pipeline";
 
 type SessionUser = { role?: string; status?: string };
 
@@ -49,6 +54,46 @@ export default function App() {
           element={
             <ProtectedRoute requireAdmin>
               <AdminDashboardPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/demos"
+          element={
+            <ProtectedRoute>
+              <DemosIndexPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/demos/analytics"
+          element={
+            <ProtectedRoute>
+              <AnalyticsDemoPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/demos/listings"
+          element={
+            <ProtectedRoute>
+              <ListingsDemoPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/demos/team"
+          element={
+            <ProtectedRoute>
+              <TeamDemoPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/demos/pipeline"
+          element={
+            <ProtectedRoute>
+              <PipelineDemoPage />
             </ProtectedRoute>
           }
         />

@@ -6,8 +6,10 @@ test.describe("Design demos", () => {
     await expect(page).toHaveURL(/sign-in/);
   });
 
-  test("unauthenticated user is redirected away from a demo page", async ({ page }) => {
-    await page.goto("/demos/analytics");
-    await expect(page).toHaveURL(/sign-in/);
-  });
+  for (const path of ["/demos/analytics", "/demos/listings", "/demos/team", "/demos/pipeline"]) {
+    test(`unauthenticated user is redirected away from ${path}`, async ({ page }) => {
+      await page.goto(path);
+      await expect(page).toHaveURL(/sign-in/);
+    });
+  }
 });

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useSession } from "@/lib/auth-client";
 
 interface DemoEntry {
   href: string;
@@ -44,11 +45,14 @@ const DEMOS: DemoEntry[] = [
 ];
 
 export function DemosIndexPage() {
+  const { data: session } = useSession();
+  const homeHref = (session?.user as { role?: string } | undefined)?.role === "admin" ? "/admin" : "/dashboard";
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
       <div className="mx-auto max-w-5xl px-6 py-16">
         <Link
-          to="/dashboard"
+          to={homeHref}
           className="text-sm text-slate-400 underline-offset-4 hover:text-slate-200 hover:underline"
         >
           ← Back to dashboard

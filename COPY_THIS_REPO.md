@@ -87,7 +87,6 @@ and add the following. **All of these MUST be set for CI/CD to work:**
 | `CLOUDFLARE_API_TOKEN` | Secret | **Yes** | The API token created in Step 5. Used by the deploy and seed-remote-db workflows to authenticate with Cloudflare. |
 | `CLOUDFLARE_ACCOUNT_ID` | Secret | **Yes** | Your Cloudflare account ID from Step 5. |
 | `BETTER_AUTH_SECRET` | Cloudflare Worker secret (not a GitHub secret) | **Yes** | Set directly on the Worker with `npx wrangler secret put BETTER_AUTH_SECRET` — used by `better-auth` to sign sessions. This is not read by GitHub Actions, so it does not go in GitHub secrets. |
-| `LIVE_URL` | Variable (`vars`) | No | Base URL of the deployed site, used by the post-deploy smoke tests. Defaults to the boilerplate's demo URL if unset — set this to your own deployed Worker URL. |
 | `E2E_TEST_EMAIL` | Secret | No | Email of a seeded test user used for the post-deploy sign-in smoke test. Defaults to `partner@example.com`. |
 | `E2E_TEST_PASSWORD` | Secret | **Yes** (for smoke test) | Password of the test user above. The sign-in smoke test is skipped if this is not set. |
 
@@ -97,7 +96,9 @@ and add the following. **All of these MUST be set for CI/CD to work:**
    Worker will be served from (e.g.
    `https://<your-worker-name>.<your-subdomain>.workers.dev`, or a custom
    domain). This **must** match exactly or sign-in/sign-up will fail with an
-   `Invalid origin` error.
+   `Invalid origin` error. This value is also used as `LIVE_URL` for the
+   post-deploy smoke tests (see `scripts/get-live-url.mjs`), so it only needs
+   to be configured in this one place.
 2. Set the `BETTER_AUTH_SECRET` Worker secret (Step 6 above) before your first
    deploy:
    ```bash

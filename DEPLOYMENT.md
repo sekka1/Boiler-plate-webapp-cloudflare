@@ -57,7 +57,10 @@ exact origin your Worker will be served from, e.g.
 `https://real-estate-referral-portal.<your-subdomain>.workers.dev` (or your
 custom domain). Better Auth performs strict origin validation, so if this
 value still points at `http://localhost:8787` when deployed, sign-in and
-sign-up requests will fail with an `Invalid origin` error.
+sign-up requests will fail with an `Invalid origin` error. This is also the
+single source of truth for the deployed site's URL — the CD workflow reads
+it (via `scripts/get-live-url.mjs`) to run the post-deploy smoke tests, so
+there is no separate `LIVE_URL` value to keep in sync.
 
 If you also need to trust other origins (for example during a domain
 migration), set the optional `BETTER_AUTH_TRUSTED_ORIGINS` variable to a
@@ -109,20 +112,24 @@ user can sign in. It uses the `partner@example.com` user seeded by
 that user has been seeded into the remote database (see the "Seed Remote D1
 Database" workflow) before relying on this check.
 
+The workflow resolves `LIVE_URL` automatically from the `vars.BETTER_AUTH_URL`
+value in `wrangler.jsonc` (via
+[`scripts/get-live-url.mjs`](./scripts/get-live-url.mjs)), so there is no
+GitHub Actions variable to configure for it — see Step E above.
+
 The `E2E_TEST_PASSWORD` secret must be configured for the sign-in smoke test
 to run — it is never hardcoded in source, and the test is skipped if it is
 missing.
 
 | Name                  | Type   | Required | Description                                              |
 | ---------------------- | ------ | -------- | --------------------------------------------------------- |
-| `LIVE_URL`              | variable | No | Base URL of the deployed site (defaults to `https://real-estate-referral-portal.garlandk.workers.dev`). |
 | `E2E_TEST_EMAIL`        | secret | No | Email of the test user used to sign in (defaults to `partner@example.com`). |
 | `E2E_TEST_PASSWORD`     | secret | Yes | Password of the test user used to sign in.                |
 
 To run the same suite locally against a live URL:
 
 ```bash
-LIVE_URL=https://real-estate-referral-portal.garlandk.workers.dev \
+LIVE_URL=$(node scripts/get-live-url.mjs) \
 E2E_TEST_EMAIL=partner@example.com \
 E2E_TEST_PASSWORD=<your-test-password> \
 npm run test:e2e:live

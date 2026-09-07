@@ -41,10 +41,14 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
+      - name: Resolve live URL from wrangler.jsonc
+        id: live_url
+        run: echo "url=$(node scripts/get-live-url.mjs)" >> "$GITHUB_OUTPUT"
+
       - name: E2E smoke test against live deployment
         run: npm run test:e2e:live
         env:
-          LIVE_URL: ${{ vars.LIVE_URL }}
+          LIVE_URL: ${{ steps.live_url.outputs.url }}
           E2E_TEST_EMAIL: ${{ secrets.E2E_TEST_EMAIL }}
           E2E_TEST_PASSWORD: ${{ secrets.E2E_TEST_PASSWORD }}
 
